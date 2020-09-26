@@ -21,7 +21,7 @@ target_link_libraries(dataset-gen ${CMAKE_THREAD_LIBS_INIT})
 
 set_property(TARGET dataset-gen PROPERTY CXX_STANDARD 20)
 
-if(CMAKE_CXX_COMPILER_ID STREQUAL Clang OR CMAKE_COMPILER_IS_GNUCXX)
+if(CMAKE_CXX_COMPILER_ID MATCHES Clang OR CMAKE_COMPILER_IS_GNUCXX)
   target_link_libraries(dataset-gen m)
   target_compile_options(dataset-gen PRIVATE -fno-exceptions -fno-rtti -Wall -Wextra -Wpedantic -Wconversion -Wno-c99-designator)
 
@@ -54,7 +54,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL Clang OR CMAKE_COMPILER_IS_GNUCXX)
   endif()
 
   if(DATASET_GEN_ENABLE_ANALYZER)
-    if(CMAKE_CXX_COMPILER_ID STREQUAL Clang)
+    if(CMAKE_CXX_COMPILER_ID MATCHES Clang)
       target_compile_options(dataset-gen PRIVATE --analyze)
     else()
       target_compile_options(dataset-gen PRIVATE -fanalyzer)
